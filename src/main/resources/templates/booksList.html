@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Krystian Cuper - Biblioteka</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="css/template.css" rel="stylesheet" />
+<link href="css/booksList.css" rel="stylesheet" />
+<link href="css/bootstrap.min.css" rel="stylesheet" />
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/filter.js"></script>
+<script src="js/popover.js"></script>
+</head>
+<body>
+<div class="background"></div>
+	<div th:include="home :: main"></div>
+	<div id="top" class="container">
+		<div class="panel panel-primary">
+			<div class="panel-heading">
+				<p class="panel-title">Spis książek</p>
+				<div class="pull-right"></div>
+			</div>
+			<div class="row">
+				<div class="col-md-3">
+					<form action="#">
+						<div class="input-group">
+							<input class="form-control" id="system-search" name="q"
+								placeholder="Wyszukaj..." required="required" /> <span
+								class="input-group-btn"> </span>
+						</div>
+					</form>
+				</div>
+				<div class="col-md-9">
+					<table class="table table-list-search">
+						<thead>
+							<tr>
+								<th>Tutył</th>
+								<th>Autor</th>
+								<th>Ilość</th>
+								<th></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="b : ${booksList}">
+								<td th:text="*{b.title}">Tutył</td>
+								<td th:text="*{b.author}">Autor</td>
+								<td th:text="*{b.amount}">Ilość</td>
+								<td th:if="${!login.equals('admin')}"><a
+									th:if="${login.equals('anonymousUser')}"> <a
+										th:if="*{b.amount} > 0" data-toggle="popover"
+										data-placement="top" data-content="Zaloguj się">
+											<button type="button" class="btn btn-primary">
+												Wypożycz</button>
+									</a>
+								</a> <a th:if="${!login.equals('anonymousUser')}"> <a
+										th:if="${userBooks.contains(b)}"> <a
+											th:if="*{b.amount} > 0" data-toggle="popover"
+											data-placement="top" data-content="Posiadasz już tę książkę">
+												<button type="button" class="btn btn-primary">
+													Wypożycz</button>
+										</a>
+									</a> 
+									<a th:if="${!userBooks.contains(b)}"> <a
+											th:href="@{/booksList/{id}and{isbn}(id=${b.id}, isbn=${b.isbn})}"
+											th:if="*{b.amount} > 0">
+												<button type="button" class="btn btn-primary">
+													Wypożycz</button>
+										</a>
+									</a>
+								</a>
+									<button th:if="*{b.amount} &lt; 1" type="button"
+										class="btn btn-primary" disabled="disabled">Wypożycz</button>
+									<button type="button" class="btn btn-info">Szczegóły</button></td>
+								<td th:if="${login.equals('admin')}">
+									<a 	type="button" class="btn btn-warning"
+										
+										th:href="@{/edit/{id}(id=${b.id})}">Edytuj</a> 							
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div th:include="home :: mainFooter"></div>
+</body>
+</html>

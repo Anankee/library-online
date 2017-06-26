@@ -1,0 +1,22 @@
+#top{
+	margin-top: 15%;
+	background-color: whitesmoke !important;
+	-webkit-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75)!important;
+	-moz-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75)!important;
+	box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75)!important;
+}
+
+.row {
+	padding: 5%;
+	padding-bottom: 1%;
+}
+
+.panel-title {
+	font-size: 20px !important;
+}
+
+
+
+#system-search {
+	width: 230px;
+}

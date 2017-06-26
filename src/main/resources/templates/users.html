@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+<title>Krystian Cuper - Biblioteka</title>
+<link href="css/bootstrap.min.css" rel="stylesheet" />
+<link href="css/users.css" rel="stylesheet" />
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="css/template.css" rel="stylesheet" />
+<script src="js/filter.js"></script>
+<title>Insert title here</title>
+<meta charset="utf-8" />
+</head>
+<body>
+<div class="background"></div>
+	<div th:include="home :: main"></div>
+	<div  class="container">
+		<div id="top" class="row">
+			<div class="col-md-3">
+				<form method="get">
+					<div class="input-group">
+						<input class="form-control" id="system-search" name="q"
+							placeholder="Search for" required="required"/> <span
+							class="input-group-btn">
+							<button type="submit" class="btn btn-default">
+								<i class="glyphicon glyphicon-search"></i>
+							</button>
+						</span>
+					</div>
+				</form>
+			</div>
+			<div class="col-md-9">
+				<table class="table table-list-search">
+					<thead>
+						<tr>
+							<th>ID</th>
+							<th>Login</th>
+							<th>Imię</th>
+							<th>Nazwisko</th>
+							<th>Email</th>							
+							<th>Opcje</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="u : ${usersList}">
+							<td th:text="*{u.id}"></td>
+							<td th:text="*{u.login}"></td>
+							<td th:text="*{u.name}"></td>
+							<td th:text="*{u.surname}"></td>
+							<td th:text="*{u.email}"></td>
+							<td>
+								<a href="#books" class="btn btn-info" data-toggle="collapse">Wypożyczone książki</a>
+								<div id="books" class="collapse">
+									<div th:each="b : *{u.book}">
+										<div><span th:text="*{b.id}"></span>. <span th:text="*{b.title}"></span></div>
+									</div>
+									
+								</div>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+	<div th:include="home :: mainFooter"></div>
+</body>
+</html>

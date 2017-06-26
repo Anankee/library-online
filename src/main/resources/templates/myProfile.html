@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+   <title>Krystian Cuper - Biblioteka</title>
+    <link rel="stylesheet" href="css/template.css" />
+    <link href="css/home.css" rel="stylesheet" />
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="css/myProfile.css"/>
+    <script
+            src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="background"></div>
+     <div th:include="home :: main"></div>
+     <div class="container">
+         <div class="row">
+             <div class="col-md-3"></div>
+             <div class="col-md-6 contener img-rounded">
+                 <div class="row">
+                     <div class="col-md-8">
+                         <h2>Twoje dane:</h2>
+                         <div class="inside" th:object="${user}">
+                         <div class="row">
+                         	<div class="col-md-3" style="text-align: right;">
+                         		<div style="padding-top: 10px">Imię:</div>
+                         		<div style="padding-top: 10px">Nazwisko:</div>
+                         		<div style="padding-top: 10px">Login:</div>
+                         		<div style="padding-top: 10px">Email:</div>
+                         	</div>
+                         	<div class="col-md-9" style="text-align: left">
+                         		<div style="padding-top: 10px" th:text="*{name}">asdfasdsfsadf</div>
+                         		<div style="padding-top: 10px" th:text="*{surname}">asdfasdfasdfas</div>
+                         		<div style="padding-top: 10px" th:text="*{login}">krystbcywqrwefadfdsgsdgfssdfsdfsfddfsgfdsfgfsdfsfs</div>
+                         		<div style="padding-top: 10px" th:text="*{email}">sadfasdfasdf</div>
+                         	</div>
+                         	</div>                           
+                         </div>
+                     </div>
+                     <div class="col-md-4">
+                         <form th:action="@{/myProfile}" method="post" th:object="${changePassword}">
+                             <div><h3>Zmiana hasła:</h3></div>
+                             <div>Aktualne hasło: </div><input th:field="*{oldPassword}" type="text"/>
+                             <div class="help-block" th:if="${#fields.hasErrors('oldPassword')}" th:errors="*{oldPassword}"></div>
+                             <div>Nowe hasło: </div><input th:field="*{newPassword}" type="text"/>
+                             <div>Powtórz nowe hasło </div><input th:field="*{confirmNewPassword}" type="text"/>
+                             <div class="help-block" th:field="${#fields.hasErrors('confirmNewPassword')}" th:errors="*{confirmNewPassword}"></div>
+                             <button type="submit" id="button" class="btn btn-primary">Zmień</button>
+                         </form>
+                     </div>
+                 </div>
+             </div>
+            <div class="col-md-3"></div>
+         </div>
+     </div>
+    <div th:include="home :: mainFooter"></div>
+</body>
+</html>

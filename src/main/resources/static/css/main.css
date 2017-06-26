@@ -1,0 +1,84 @@
+.page-header{
+  margin-top: 100px; 
+  text-align: center;
+}
+article div h2{
+	text-align: center;	
+}
+
+.inline{
+	display: inline;
+}
+
+
+#bold{
+	font-weight: bold;
+
+}
+
+h1 {
+    border-bottom: 1px solid #000;
+    color: #000;
+    margin-bottom: 30px;
+    position: relative;
+    text-align: center;  
+    border-color: lightgrey;
+    color: white;
+	text-shadow: 2px 2px 4px #000000;
+}
+h1 span {
+    background: #fff;
+    padding: 0 15px;
+    position: relative;
+    top: 17px;
+}
+
+div .photoShadow{
+    box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+ }
+
+div img.java{
+  	width: 150px;
+  	height: 150px;
+  	display: inline;
+	
+}
+#img-center{
+	margin: 0 auto;
+}
+.left-border{
+	border-left: solid;
+	border-left-width: 1px;
+	padding-left: 10px;
+	display: inline-block;
+}
+
+#text{
+  	font-size: 12px;
+}
+
+img.img-size{
+	height: 105px;
+}
+
+#center{
+	text-align: center;
+	font-size: 40px;
+}
+
+div.radius{
+	border-top: 1px solid lightgrey;
+    border-top-left-radius: 2em;
+    border-top-right-radius: 2em;
+    padding-top: 50px;
+    border-bottom: 1px solid lightgrey;
+    border-bottom-left-radius: 2em;
+    border-bottom-right-radius: 2em;
+    padding-bottom: 50px;
+}
+
+#h2margin{
+	margin-top: 40px;
+}
+/*---------------------------------------*/
+

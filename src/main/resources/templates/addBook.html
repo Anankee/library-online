@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="head">
+<title>Krystian Cuper - Biblioteka</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="css/template.css" rel="stylesheet" />
+<link href="css/home.css" rel="stylesheet" />
+<link href="css/addBook.css" rel="stylesheet" />
+<link href="css/bootstrap.min.css" rel="stylesheet" />
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/fadeout.js"></script>
+
+
+<title>Insert title here</title>
+</head>
+<body>
+	<div class="background"></div>
+	<div th:include="home :: main"></div>
+
+	<div class="container">
+		<div class="row main">
+			<div class="main-login main-center">
+				<h3>Dodaj książkę</h3>
+				<div th:if="${param.succes}" class="fadeout alert alert-success">
+					<strong>Sukces!</strong> Książka została dodana.
+				</div>
+				<form method="post" th:action="@{/addBook}" th:object="${book}">
+					<div class="form-group">
+						<label for="name" class="cols-sm-2 control-label">Tutuł</label>
+						<div class="cols-sm-10">
+							<div class="input-group">
+								<input type="text" class="form-control" name="title" id="title"
+									placeholder="Podaj tytuł książki" th:field="*{title}" />
+							</div>
+						</div>
+					</div>
+					<div class="help-block" th:if="${#fields.hasErrors('title')}"
+						th:errors="*{title}"></div>
+					<div class="form-group">
+						<label for="name" class="cols-sm-2 control-label">Autor</label>
+						<div class="cols-sm-10">
+							<div class="input-group">
+								<input type="text" class="form-control" name="author"
+									id="author" placeholder="Podaj autora ksiązku"
+									th:field="*{author}" />
+							</div>
+						</div>
+					</div>
+					<div class="help-block" th:if="${#fields.hasErrors('author')}"
+						th:errors="*{author}"></div>
+					<div class="form-group">
+						<label for="name" class="cols-sm-2 control-label">Wydawnictwo</label>
+						<div class="cols-sm-10">
+							<div class="input-group">
+								<input type="text" class="form-control" name="publishing"
+									id="publishing" placeholder="Podaj wydawnictwo"
+									th:field="*{publishing}" />
+							</div>
+						</div>
+					</div>
+					<div class="help-block" th:if="${#fields.hasErrors('publishing')}"
+						th:errors="*{publishing}"></div>
+					<div class="form-group">
+						<label for="name" class="cols-sm-2 control-label">ISBN</label>
+						<div class="cols-sm-10">
+							<div class="input-group">
+								<input type="number" class="form-control" name="isbn" id="isbn"
+									placeholder="Podaj ISBN" th:field="*{isbn}" />
+							</div>
+						</div>
+					</div>
+					<div class="help-block" th:if="${#fields.hasErrors('isbn')}"
+						th:errors="*{isbn}"></div>
+					<div class="form-group">
+						<label for="name" class="cols-sm-2 control-label">Ilość</label>
+						<div class="cols-sm-10">
+							<div class="input-group">
+								<input type="number" class="form-control" name="amount"
+									id="amount" placeholder="Podaj ilość" th:field="*{amount}" />
+							</div>
+						</div>
+					</div>
+					<div class="help-block" th:if="${#fields.hasErrors('amount')}"
+						th:errors="*{amount}"></div>
+					<div class="form-group ">
+						<button type="submit" id="button"
+							class="btn btn-primary btn-lg btn-block login-button">Potwierdź</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+
+
+
+	<div th:include="home :: mainFooter"></div>
+</body>
+</html>

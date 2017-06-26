@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+<title>Krystian Cuper - Biblioteka</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" href="css/template.css" />
+<link href="css/home.css" rel="stylesheet" />
+<link href="css/bootstrap.min.css" rel="stylesheet" />
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/fadeout.js"></script>
+</head>
+<body>
+	<div class="background"></div>
+	<div th:fragment="main">
+		<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed"
+						data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+						<span class="sr-only">Toggle navigation</span> <span
+							class="icon-bar"></span> <span class="icon-bar"></span> <span
+							class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" th:href="@{/home}">Wirtualna biblioteka</a>
+				</div>
+
+				<div class="collapse navbar-collapse"
+					id="bs-example-navbar-collapse-1">
+					<ul class="nav navbar-nav">
+						<li><a th:href="@{/booksList}">Lista książek</a></li>
+						<li
+							th:if="${!login.equals('anonymousUser') and !login.equals('admin')}"
+							class="dropdown"><a class="dropdown-toggle"
+							data-toggle="dropdown">Panel Użytkownika <span class="caret"></span></a>
+							<ul class="dropdown-menu" role="menu">
+								<li><a th:href="@{/myBooks}">Wypożyczone książki</a></li>
+								<li><a th:href="@{/myProfile}">Profil</a></li>
+								<li class="divider"></li>
+								<li>
+									<form th:action="@{/logout}" method="post">
+										<button id="out" type="submit"
+											class="btn btn-warning btn-block">Wyloguj</button>
+									</form>
+								</li>
+							</ul></li>
+						<li th:if="${login.equals('admin')}" class="dropdown"><a
+							href="#" class="dropdown-toggle" data-toggle="dropdown">Panel
+								administracyjny <span class="caret"></span>
+						</a>
+							<ul class="dropdown-menu" role="menu">
+								<li><a th:href="@{/addBook}">Dodaj ksiązkę</a></li>
+								<li><a th:href="@{/booksList}">Edytuj ksiązkę</a></li>
+								<li><a th:href="@{/users}">Lista uzytkowników</a></li>
+								<li class="divider"></li>
+								<li>
+									<form th:action="@{/logout}" method="post">
+										<button id="out" type="submit"
+											class="btn btn-warning btn-block">Wyloguj</button>
+									</form>
+								</li>
+							</ul></li>
+					</ul>
+					<ul th:if="${!login.equals('anonymousUser')}"
+						class="nav navbar-nav navbar-right">
+						<li><a id="hello">Witaj <span th:text="${login}">!</span></a></li>
+					</ul>
+					<ul th:if="${login.equals('anonymousUser')}"
+						class="nav navbar-nav navbar-right">
+						<li><div th:if="${param.error}" class="fadeout alert alert-danger"
+								role="alert" style="margin-bottom: 0;">Błędny login bądź
+								hasło</div></li>
+						<li class="dropdown"><a class="dropdown-toggle"
+							data-toggle="dropdown"><b>Logowanie</b> <span class="caret"></span></a>
+							<ul id="login-dp" class="dropdown-menu">
+								<li>
+									<div class="row">
+										<div class="col-md-12"
+											style="padding-top: 20px; padding-bottom: 20px;">
+											<form class="form" role="form" method="post"
+												th:action="@{/home}" accept-charset="UTF-8" id="login-nav">
+												<div class="form-group">
+													<label class="sr-only" for="exampleInputEmail2">Login</label>
+													<input name="username" type="text" class="form-control"
+														id="exampleInputEmail2" placeholder="Login"
+														required="required" />
+												</div>
+												<div class="form-group">
+													<label class="sr-only" for="exampleInputPassword2">Password</label>
+													<input type="password" name="password" class="form-control"
+														id="exampleInputPassword2" placeholder="Password"
+														required="required" />
+												</div>
+												<div class="form-group">
+													<button type="submit" class="btn btn-primary btn-block">Zaloguj</button>
+												</div>
+											</form>
+										</div>
+										<div class="bottom text-center">
+											<a th:href="@{/register}"><b>Rejestracja</b></a>
+										</div>
+									</div>
+								</li>
+							</ul></li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+	</div>
+	<div id="container" class="container">
+		<div class="row">
+			<div class="col-md-3"></div>
+			<div class="col-md-6">
+				<div class="jumbotron">
+					<div class="container">
+						<h1>Dzień Dobry</h1>
+						<p>Witamy w wirtualnej bibliotece</p>
+						<p>
+							<a class="btn btn-primary btn-lg" th:href="@{/booksList}"
+								role="button">Przejdz do listy książek</a>
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div th:fragment="mainFooter">
+		<footer>
+			<p>© 2017 Krystian Cuper, All Rights Reserved</p>
+		</footer>
+	</div>
+
+</body>
+</html>

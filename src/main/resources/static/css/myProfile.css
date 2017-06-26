@@ -1,0 +1,9 @@
+.contener{
+    background-color: whitesmoke;
+    padding-bottom: 25px;
+    color: black;
+    -webkit-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75)!important;
+    -moz-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75)!important;
+    box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75)!important;
+    margin-top: 10%;
+}

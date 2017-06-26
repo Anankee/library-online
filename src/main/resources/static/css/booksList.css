@@ -1,0 +1,24 @@
+#top {
+	padding-top: 5%;
+	margin-bottom: 5%;
+}
+
+.row {
+	padding: 5%;
+	padding-bottom: 1%;
+}
+
+.panel-title {
+	font-size: 20px !important;
+}
+
+.panel-primary {
+	background-color: whitesmoke !important;
+	-webkit-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75)!important;
+	-moz-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75)!important;
+	box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75)!important;
+}
+
+#system-search {
+	width: 230px;
+}

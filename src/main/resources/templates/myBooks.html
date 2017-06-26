@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+   <title>Krystian Cuper - Biblioteka</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="css/template.css" rel="stylesheet" />
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/booksList.css" rel="stylesheet" />
+    <script src="js/filter.js"></script>
+    <script
+            src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+</head>
+<body>
+<div th:include="home :: main"></div>
+<div class="background"></div>
+
+<div id="top" class="container">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <p class="panel-title">Spis wypożyczonych książek</p>
+            <div class="pull-right"></div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <form action="#">
+                    <div class="input-group">
+                        <input class="form-control" id="system-search" name="q"
+                               placeholder="Wyszukaj..." required="required" /> <span
+                            class="input-group-btn"> </span>
+                    </div>
+                </form>
+            </div>
+            <div class="col-md-9">
+                <table class="table table-list-search">
+                    <thead>
+                    <tr>
+                        <th>Tutył</th>
+                        <th>Autor</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="b : ${userBooks}">
+                        <td th:text="*{b.title}">Tutył</td>
+                        <td th:text="*{b.author}">Autor</td>
+                        <td>
+                            <a th:href="@{/myBooks/{id}drop{isbn}(id=${b.id}, isbn=${b.isbn})}">
+                                <button type="button" class="btn btn-primary">Zwróć</button>
+                            </a>
+                            <button type="button" class="btn btn-info">Szczegóły</button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div th:include="home :: mainFooter"></div>
+</body>
+</html>
