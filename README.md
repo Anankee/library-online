@@ -1,3 +1,3 @@
 # library-online
 
-http://http://biblioteka-online.herokuapp.com/
+http://biblioteka-online.herokuapp.com/
